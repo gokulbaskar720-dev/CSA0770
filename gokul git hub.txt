@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .game {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 350px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game">
+    <h1>🎮 Guess the Number</h1>
+    <p>Guess a number between <strong>1</strong> and <strong>100</strong>.</p>
+
+    <input type="number" id="guess" placeholder="Enter your guess">
+    <br>
+    <button onclick="checkGuess()">Guess</button>
+
+    <p id="message"></p>
+    <p>Attempts: <span id="attempts">0</span></p>
+</div>
+
+<script>
+    const secretNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+        const guess = Number(document.getElementById("guess").value);
+        const message = document.getElementById("message");
+
+        attempts++;
+        document.getElementById("attempts").textContent = attempts;
+
+        if (guess === secretNumber) {
+            message.textContent = "🎉 Congratulations! You guessed the number!";
+            message.style.color = "green";
+        } else if (guess < secretNumber) {
+            message.textContent = "⬆️ Too low! Try again.";
+            message.style.color = "orange";
+        } else {
+            message.textContent = "⬇️ Too high! Try again.";
+            message.style.color = "red";
+        }
+    }
+</script>
+
+</body>
+</html>
